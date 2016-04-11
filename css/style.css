@@ -4,4 +4,53 @@ html {
 
 }
 
+h1 {
+    font-family: "Great Vibes", serif;
+    font-size: 2em;
+    color: firebrick;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
 
+ul {
+    padding: 0 20%;
+}
+
+ul li {
+    display: inline-block;
+    margin-right: 30px;
+}
+
+.center {
+    text-align: center;
+}
+
+button {
+    margin-top: 10px;
+    background-color: firebrick;
+    font-size: 0.75em;
+    color: white;
+    text-transform: uppercase;
+    width: 90px;
+    height: 30px;
+    border: none;
+}
+
+select {
+    margin: 80px 4px 0px 20px;
+    width: 200px;
+
+}
+
+.search-form {
+    background-color: lightgray;
+    height: 150px;
+    margin: 0 20%;
+    vertical-align: bottom;
+}
+
+
+
+.logo-display-block {
+    margin-top: 5em;
+}
