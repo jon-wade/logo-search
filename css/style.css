@@ -19,10 +19,15 @@ ul {
 ul li {
     display: inline-block;
     margin-right: 30px;
+    margin-top: 20px;
 }
 
 .center {
     text-align: center;
+}
+
+.color {
+    display: none;
 }
 
 button {
@@ -39,7 +44,11 @@ button {
 select {
     margin: 80px 4px 0px 20px;
     width: 200px;
+}
 
+option {
+    color: darkolivegreen;
+    font-size: 0.5em;
 }
 
 .search-form {
