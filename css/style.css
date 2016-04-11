@@ -4,6 +4,7 @@ html {
 
 }
 
+
 h1 {
     font-family: "Great Vibes", serif;
     font-size: 2em;
@@ -13,12 +14,15 @@ h1 {
 }
 
 ul {
-    padding: 0 20%;
+    padding-left: 30%;
+    padding-right: 28%;
+    margin-left: 58px;
 }
 
 ul li {
     display: inline-block;
-    margin-right: 30px;
+    width: 120px;
+    vertical-align: middle;
     margin-top: 20px;
 }
 
@@ -54,11 +58,9 @@ option {
 .search-form {
     background-color: lightgray;
     height: 150px;
-    margin: 0 20%;
+    margin: 0 33%;
     vertical-align: bottom;
 }
-
-
 
 .logo-display-block {
     margin-top: 5em;

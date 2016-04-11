@@ -8,6 +8,9 @@ $(document).ready(function(){
         console.log(dd1);
         console.log(dd2);
 
+        //iterate through all logos on page and display according to drop-down logic
+        iterateLogos(dd1, dd2);
+
 
     });
 
@@ -15,80 +18,162 @@ $(document).ready(function(){
 
 });
 
-//pass in an element, check which class it belongs to and build an object
-function colorLogoObj(elem){
-    //set up possible flags
-    var categoryFlag = {
-        scholarship: false,
-        loanprogram: false,
-        highschool: false,
-        k12: false
-    };
-    if ($(elem).hasClass('scholarship')) {
-        console.log("Found scholarship");
-        categoryFlag.scholarship = true;
-    }
-    if ($(elem).hasClass('K-12')) {
-        console.log("Found K-12");
-        categoryFlag.k12 = true;
-    }
-    if ($(elem).hasClass('highschool')) {
-        console.log("Found highschool");
-        categoryFlag.highschool = true;
-    }
-    if ($(elem).hasClass('loanprogram')) {
-        console.log("Found loanprogram");
-        categoryFlag.loanprogram = true;
-    }
-
-    console.log(categoryFlag);
-    return categoryFlag;
+function reset(id){
+    $('li#' + id + ' img.color', 'li#'+ id + ' img.bw').fadeIn(200).css('display', 'none');
 }
 
 function showColor(id){
-    $('li#' + id + ' img.color').css('display', 'inline');
+    $('li#' + id + ' img.color').fadeIn(200).css('display', 'inline');
     $('li#'+ id + ' img.bw').css('display', 'none');
 }
 
 function showBW(id){
-    $('li#'+ id + ' img.bw').css('display', 'inline');
+    $('li#'+ id + ' img.bw').fadeIn(200).css('display', 'inline');
     $('li#' + id + ' img.color').css('display', 'none');
 
 }
 
+function iterateLogos(dd1, dd2) {
+    var idNum=0;
+    for(var i=0; i<9; i++) {
+        var currentId="img" + idNum;
+        console.log(currentId);
+        reset(currentId);
+        checkDisplayLogic(dd1, dd2, currentId);
+        idNum++;
+    }
+}
+
+function checkDisplayLogic(dd1, dd2, currentId){
+    console.log(dd1);
+    console.log(dd2);
+    if (dd1 == 'PROGRAM TYPE' && dd2 == 'EDUCATION LEVEL'){
+        showColor(currentId);
+    }
+    if (dd1 == 'SCHOLARSHIP' && dd2 == 'EDUCATION LEVEL'){
+        if ($('li#' + currentId).hasClass('scholarship')){
+            showColor(currentId);
+        }
+        else {
+            showBW(currentId);
+        }
+    }
+    if (dd1 == 'LOAN PROGRAM' && dd2 == 'EDUCATION LEVEL'){
+        if ($('li#' + currentId).hasClass('loanprogram')){
+            showColor(currentId);
+        }
+        else {
+            showBW(currentId);
+        }
+    }
+    if (dd1 == "SELECT ALL" && dd2 == 'EDUCATION LEVEL'){
+        if (($('li#' + currentId).hasClass('loanprogram')) || ($('li#' + currentId).hasClass('scholarship'))){
+            showColor(currentId);
+        }
+        else {
+            showBW(currentId);
+        }
+    }
+    if (dd1 == "PROGRAM TYPE" && dd2 == 'HIGH SCHOOL'){
+        if ($('li#' + currentId).hasClass('highschool')){
+            showColor(currentId);
+        }
+        else {
+            showBW(currentId);
+        }
+    }
+    if (dd1 == "PROGRAM TYPE" && dd2 == 'K-12'){
+        if ($('li#' + currentId).hasClass('K-12')){
+            showColor(currentId);
+        }
+        else {
+            showBW(currentId);
+        }
+    }
+    if (dd1 == "PROGRAM TYPE" && dd2 == 'SELECT ALL'){
+        if (($('li#' + currentId).hasClass('highschool')) || ($('li#' + currentId).hasClass('K-12'))){
+            showColor(currentId);
+        }
+        else {
+            showBW(currentId);
+        }
+    }
+    if (dd1 == "SELECT ALL" && dd2 == 'SELECT ALL'){
+        if (($('li#' + currentId).hasClass('highschool')) || ($('li#' + currentId).hasClass('K-12')) || ($('li#' + currentId).hasClass('loanprogram')) || ($('li#' + currentId).hasClass('scholarship'))){
+            showColor(currentId);
+        }
+        else {
+            showBW(currentId);
+        }
+    }
+    if (dd1 == "SCHOLARSHIP" && dd2 == 'SELECT ALL'){
+        if ((($('li#' + currentId).hasClass('highschool')) || ($('li#' + currentId).hasClass('K-12'))) && ($('li#' + currentId).hasClass('scholarship'))){
+            showColor(currentId);
+        }
+        else {
+            showBW(currentId);
+        }
+    }
+    if (dd1 == "SCHOLARSHIP" && dd2 == 'HIGH SCHOOL'){
+        if (($('li#' + currentId).hasClass('highschool')) && ($('li#' + currentId).hasClass('scholarship'))){
+            showColor(currentId);
+        }
+        else {
+            showBW(currentId);
+        }
+    }
+    if (dd1 == "SCHOLARSHIP" && dd2 == 'K-12'){
+        if (($('li#' + currentId).hasClass('K-12')) && ($('li#' + currentId).hasClass('scholarship'))){
+            showColor(currentId);
+        }
+        else {
+            showBW(currentId);
+        }
+    }
+    if (dd1 == "LOAN PROGRAM" && dd2 == 'SELECT ALL'){
+        if ((($('li#' + currentId).hasClass('highschool')) || ($('li#' + currentId).hasClass('K-12'))) && ($('li#' + currentId).hasClass('loanprogram'))){
+            showColor(currentId);
+        }
+        else {
+            showBW(currentId);
+        }
+    }
+    if (dd1 == "LOAN PROGRAM" && dd2 == 'HIGH SCHOOL'){
+        if (($('li#' + currentId).hasClass('highschool')) && ($('li#' + currentId).hasClass('loanprogram'))){
+            showColor(currentId);
+        }
+        else {
+            showBW(currentId);
+        }
+    }
+    if (dd1 == "LOAN PROGRAM" && dd2 == 'K-12'){
+        if (($('li#' + currentId).hasClass('K-12')) && ($('li#' + currentId).hasClass('loanprogram'))){
+            showColor(currentId);
+        }
+        else {
+            showBW(currentId);
+        }
+    }
+    if (dd1 == "SELECT ALL" && dd2 == 'HIGH SCHOOL'){
+        if (($('li#' + currentId).hasClass('highschool')) && (($('li#' + currentId).hasClass('loanprogram')) || ($('li#' + currentId).hasClass('scholarship')))){
+            showColor(currentId);
+        }
+        else {
+            showBW(currentId);
+        }
+    }
+    if (dd1 == "SELECT ALL" && dd2 == 'K-12'){
+        if (($('li#' + currentId).hasClass('K-12')) && (($('li#' + currentId).hasClass('loanprogram')) || ($('li#' + currentId).hasClass('scholarship')))){
+            showColor(currentId);
+        }
+        else {
+            showBW(currentId);
+        }
+    }
+
+}
 
 
-//function selectLogos(dd1, dd2){
-//    //reset all logos
-//    $('.bw').css('display', 'inline');
-//    $('.color').css('display', 'none');
-//    //logic
-//    if (dd1 == 'LOAN PROGRAM' && dd2 == 'SELECT ALL'){
-//        $('.loanprogram img.bw').css('display', 'none');
-//        $('.loanprogram img.color').css('display', 'inline');
-//    }
-//    else {
-//        $('.loanprogram img.bw').css('display', 'inline');
-//        $('.loanprogram img.color').css('display', 'none');
-//    }
-//
-//    if (dd1 == 'SCHOLARSHIP'){
-//        $('.scholarship img.bw').css('display', 'none');
-//        $('.scholarship img.color').css('display', 'inline');
-//    }
-//    else {
-//        $('.scholarship img.bw').css('display', 'inline');
-//        $('.scholarship img.color').css('display', 'none');
-//    }
-//
-//    if (dd1 == 'SELECT ALL'){
-//        $('.loanprogram img.bw').css('display', 'none');
-//        $('.loanprogram img.color').css('display', 'inline');
-//        $('.scholarship img.bw').css('display', 'none');
-//        $('.scholarship img.color').css('display', 'inline');
-//    }
-//
-//}
 
 
 
